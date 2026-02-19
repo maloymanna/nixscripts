@@ -1,2 +1,1 @@
-# nixscripts
-Scripts for productivity and personal usage on UNIX (specifically Ubuntu Linux)
+## Ubuntu Linux scripts for productivity (and personal usage)
