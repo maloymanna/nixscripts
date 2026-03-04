@@ -1,4 +1,5 @@
 ## Ubuntu Linux scripts for productivity (and personal usage)
 - ◑ [launch-gammastep.sh](/launch-gammastep.sh) - Set screen color temperature with gammashift to reduce eye strain  
-- 🔥[toggle-screen-temp.sh](/toggle-screen-temp.sh) - Toggle screen color temperature with gammashift (minimal, no helptext)
+- 🔥 [toggle-screen-temp.sh](/toggle-screen-temp.sh) - Toggle screen color temperature with gammashift (minimal, no helptext)
 - ⌞⌝ [tile-corners.sh](/tile-corners.sh) - Tile active window on screen as per option (left/right/top left/top right/bottom left/bottom right)
+- 🌗 [switch_sublime_theme](/switch_sublime_theme) - Toggles between light and dark themes for Sublime Text based on the current XFCE theme
