@@ -1,39 +1,46 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Toggles screen temperature between warm and daylight
-# Hardcoded coordinates e.g. for Paris
-LATITUDE="48.8575"
-LONGITUDE="2.3514"
+STATE_FILE="$HOME/.gammastep_toggle_state"
+DEFAULT_WARM=3500
+DEFAULT_NORMAL=6500
 
-# Temperatures
-WARM_TEMP=3500
-DAYLIGHT_TEMP=6500
+# Function to apply temperature instantly
+apply_temp() {
+    pkill gammastep 2>/dev/null
+    gammastep -O "$1" -P
+}
 
-# State file to track current mode (stored in /tmp or XDG_RUNTIME_DIR)
-STATE_FILE="${XDG_RUNTIME_DIR:-/tmp}/screentemp_toggle_state"
-
-# Check current state and toggle
-if [[ -f "$STATE_FILE" ]]; then
-    current_temp=$(cat "$STATE_FILE")
-else
-    current_temp=$DAYLIGHT_TEMP
+# If argument is a number, apply directly
+if [[ "$1" =~ ^[0-9]+$ ]]; then
+    apply_temp "$1"
+    echo "$1" > "$STATE_FILE"
+    exit 0
 fi
 
-# Toggle between states
-if [[ "$current_temp" == "$WARM_TEMP" ]]; then
-    target_temp=$DAYLIGHT_TEMP
-else
-    target_temp=$WARM_TEMP
+# Initialize state file if missing
+if [ ! -f "$STATE_FILE" ]; then
+    echo "$DEFAULT_NORMAL" > "$STATE_FILE"
 fi
 
-# Apply temperature using gammastep
-# Kill existing gammastep instances first
-pkill -x gammastep 2>/dev/null
+CURRENT=$(cat "$STATE_FILE")
 
-# Run gammastep with hardcoded coordinates
-gammastep -l "$LATITUDE:$LONGITUDE" -t "${DAYLIGHT_TEMP}:${target_temp}" &
-
-# Save new state
-echo "$target_temp" > "$STATE_FILE"
-
-echo "Screen color temp set to ${target_temp}K"
+case "$1" in
+    on)
+        apply_temp "$DEFAULT_WARM"
+        echo "$DEFAULT_WARM" > "$STATE_FILE"
+        ;;
+    off)
+        apply_temp "$DEFAULT_NORMAL"
+        echo "$DEFAULT_NORMAL" > "$STATE_FILE"
+        ;;
+    *)
+        # Toggle mode (no argument)
+        if [ "$CURRENT" = "$DEFAULT_NORMAL" ]; then
+            apply_temp "$DEFAULT_WARM"
+            echo "$DEFAULT_WARM" > "$STATE_FILE"
+        else
+            apply_temp "$DEFAULT_NORMAL"
+            echo "$DEFAULT_NORMAL" > "$STATE_FILE"
+        fi
+        ;;
+esac
