@@ -2,7 +2,8 @@
 - ◑ [launch-gammastep.sh](/launch-gammastep.sh) - Set screen color temperature with gammashift to reduce eye strain  
 - 🔥 [toggle-screen-temp.sh](/toggle-screen-temp.sh) - Toggle screen color temperature with gammashift (minimal, no helptext)
 - ⌞⌝ [tile-corners.sh](/tile-corners.sh) - Tile active window on screen as per option (left/right/top left/top right/bottom left/bottom right)
-- 🌗 [switch_sublime_theme](/switch_sublime_theme) - Toggles between light and dark themes for Sublime Text based on the current XFCE theme
+- 🌗 [switch_sublime_theme](/switch_sublime_theme.sh) - Toggles between light and dark themes for Sublime Text based on the current XFCE theme
+- 🔁 [sync-keepass](/sync-keepass.sh) - Automate syncing of KeePass file from local to Google Drive and OneDrive for backup
 
 ## Useful commands
 - `du -ah / | sort -rh | head -n 10` - shows 10 largest files in `/` root directory
