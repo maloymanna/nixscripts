@@ -5,6 +5,7 @@
 - 🌗 [switch_sublime_theme](/switch_sublime_theme.sh) - Toggles between light and dark themes for Sublime Text based on the current XFCE theme
 - 🔁 [sync-keepass](/sync-keepass.sh) - Automate syncing of KeePass file from local to Google Drive and OneDrive for backup
 - 🚀 [start-local](/start-local.sh) - Launcher script for llama.cpp with local model (Qwen2.5-Coder-7B) on a cpu-only machine with a local api-key for CORS security
+- 📏 [benchmark](/benchmark.sh) - Benchmark and compare various parameters for launching llama.cpp with local model
 
 ## Useful commands
 - `du -ah / | sort -rh | head -n 10` - shows 10 largest files in `/` root directory
